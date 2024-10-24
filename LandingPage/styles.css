@@ -1,0 +1,50 @@
+/* Resetting default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  body {
+    background: linear-gradient(135deg, #4A00E0, #8E2DE2);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Landing container styling */
+  .landing-container {
+    text-align: center;
+    color: white;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }
+  
+  /* Button styling */
+  .home-btn {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #FF4B2B;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 25px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .home-btn:hover {
+    background-color: #FF416C;
+    transform: scale(1.05);
+  }
+  

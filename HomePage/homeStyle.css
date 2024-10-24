@@ -1,0 +1,97 @@
+/* Resetting margins, paddings, and setting font */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Full-page container */
+  body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #4A00E0, #8E2DE2);
+  }
+  
+  /* Main content container */
+  .container {
+    display: flex;
+    width: 80%;
+    max-width: 1200px;
+    height: 60%;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  /* Left side: Image */
+  .left {
+    flex: 1;
+  }
+  
+  .left img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+  }
+  
+  /* Right side: Buttons */
+  .right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  /* Button styles */
+  a {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+  }
+  
+  /* Different colors for each button */
+  .preview-btn {
+    background-color: #FF4B2B;
+    color: white;
+  }
+  
+  .generate-btn {
+    background-color: #1D976C;
+    color: white;
+  }
+  
+  button:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+  
+  /* Media query for smaller devices */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      height: 80%;
+    }
+  
+    .left, .right {
+      flex: none;
+      width: 100%;
+      height: 50%;
+      
+    }
+  
+    .right {
+      height: auto;
+    }
+  }
+  
