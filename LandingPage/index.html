@@ -11,8 +11,19 @@
     <div class="content">
       <h1>Automatic Portfolio Website Generator</h1>
       <p>Create your personalized portfolio in minutes!</p>
-      <a href="/Portfolio-Website-Builder/HomePage/home.html" class="home-btn">Get Started</a>
+      <a href="/Portfolio-Website-Builder/HomePage/home.html" class="home-btn" id="getStartedBtn">Get Started</a>
     </div>
   </div>
+  
+  <script>
+    // JavaScript for simple interaction
+    document.getElementById('getStartedBtn').addEventListener('mouseover', function() {
+      this.style.transform = 'scale(1.1)';
+    });
+
+    document.getElementById('getStartedBtn').addEventListener('mouseout', function() {
+      this.style.transform = 'scale(1)';
+    });
+  </script>
 </body>
 </html>

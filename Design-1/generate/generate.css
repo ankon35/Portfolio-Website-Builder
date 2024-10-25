@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Portfolio</title>
-  
-   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <style>
-    /* body {
+/* 
+    body {
       font-family: Arial, sans-serif;
       background-color: #f4f4f4;
       display: flex;
@@ -15,7 +7,7 @@
       justify-content: center;
       height: 100vh;
       margin: 0;
-    }
+    } 
     .container {
       text-align: center;
       background-color: white;
@@ -47,11 +39,18 @@
     }
     button:hover {
       background-color: #45a049;
-    } */
+    }  */
 
-
+/* 
+    img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 20px;
+      } */
     
-    *{
+*{
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -145,6 +144,8 @@ body{
 .home-img img{
 width: 50vh;
 border-radius: 65%;
+/* margin-left: 20px; */
+margin: auto;
 height: auto;
 animation: floatImage 4s ease-in-out infinite;
 
@@ -457,11 +458,22 @@ footer section */
     html{
         font-size: 55%;
     }
+    .header{
+        position: fixed;
+        top: 0;
+    left: 0; 
+    }
 }
 
 @media (max-width: 992px) {
     .header{
         padding: 3rem 9%;
+    }
+
+    .header{
+        position: fixed;
+        top: 0;
+    left: 0; 
     }
 
     .section {
@@ -476,6 +488,12 @@ footer section */
 @media (max-width: 800px) {
     #menu-icon{
         display: block;
+    }
+
+    .header{
+        position: fixed;
+        top: 0;
+    left: 0; 
     }
 
     .navbar{
@@ -557,6 +575,12 @@ footer section */
         font-size: 40%;
     }
 
+    .header{
+        position: fixed;
+        top: 0;
+    left: 0; 
+    }
+
     .home-img{
         height: 52vh;
     }
@@ -609,6 +633,9 @@ footer section */
         font-size: 35%;
     }
 
+    .header{
+        position: fixed;
+    }
     
 
     .home-img{
@@ -644,6 +671,11 @@ footer section */
 
     html{
         font-size: 35%;
+    }
+
+    .header{
+        position: static;
+     
     }
 
     .home-img{
@@ -724,12 +756,24 @@ footer section */
         
     }
 
+    .header{
+        position: fixed;
+        top: 0;
+    left: 0; 
+    }
+
 }
 
 @media (max-width: 251px){
 
     html{
         font-size: 35%;
+    }
+
+    .header{
+        position: fixed;
+        top: 0;
+    left: 0; 
     }
 
     .home-img{
@@ -787,101 +831,3 @@ footer section */
 
 }
 
-  </style>
-</head>
-<body>
-
-
-  <!-- header design -->
-  <header class="header">
-    <a href="#" class="logo">Portfolio</a>
-
-    <i class='bx bx-menu' id="menu-icon"></i>
-
-    <nav class="navbar">
-        <a href="#home" class="active">Home</a>
-        <a href="#about">About</a>
-        <!-- <a href="#services">Services</a> -->
-        <!-- <a href="#portfolio">Portfolio</a> -->
-        <a href="#contact">Contact</a>
-        
-    </nav>
-  </header>
-
-   <!-- home section design -->
-
-   <section class="home" id="home">
-    <div class="home-content">
-        <h3>Hello, It's me</h3>
-        <h1 id="userName"></h1>
-        <h3 >And I am a <span id="userTitle"></span></h3>
-        <p id="userdescription"></p>
-
-   
-
-    <!-- <a href="#" id="downloadResume" >Download CV</a> -->
-    <div class="social-media">
-      <a href="https://fb.com/cariestatiane789"><i class='bx bxl-facebook-circle' ></i></a>
-      <a href="https://bd.linkedin.com/in/nahida-akter-57376032"><i class='bx bxl-linkedin'></i></a>
-      <a href="https://www.facebook.com/nahida.akter.56/"><i class='bx bxl-twitter' ></i></a>
-  </div>
-    <button id="downloadResume">Download Resume</button>
-
-</div>
-    <div class="home-img">
-        <img id="userPicture" src="" alt="User Picture">
-    
-    </div>
-<!-- <button id="downloadResume">Download Resume</button> -->
-
-</section>
-
-
- <!-- About section design -->
-
-  <section class="about" id="about">
-        <div class="home-img">
-          <img id="userPicture2" src="" alt="User Picture">
-        </div>
-        <div class="about-content">
-            <h2 class="heading">About  <span>Me</span></h2>
-            <h3 id="userTitle"></h3>
-            <p id="userdescription">I am Nahida Akter,Business Manager at Oracle.As a strategic navigator at Oracle, I've spearheaded transformative initiatives that redefine the landscape of technology solutions. My journey has been enriched by collaborations with esteemed entities including Defence establishments, Financial Institutions, Multinational Corporations, and Power Sector giants.
-
-                My canvas of achievements spans the orchestration of comprehensive Network Infrastructure solutions, fortification of Data Centers, seamless integration of Video Surveillance & Conferencing technologies, and the facilitation of secure Payment Gateways.</p>
-            <a href="#" class="btn">Read More</a>
-        </div>
-  </section> 
-
-
-
-  <!-- <div class="container">
-    <img id="userPicture" src="" alt="User Picture">
-    <h1 id="userName"></h1>
-    <h2 id="userTitle"></h2>
-    <button id="downloadResume">Download Resume</button>
-  </div> -->
-
-  <script>
-    const userData = JSON.parse(localStorage.getItem('userData'));
-
-    if (userData) {
-      document.getElementById('userName').textContent = userData.name;
-      document.getElementById('userTitle').textContent = userData.title;
-      document.getElementById('userdescription').textContent = userData.description;
-      document.getElementById('userPicture').src = userData.picture;
-      document.getElementById('userPicture2').src = userData.picture;
-
-      document.getElementById('downloadResume').addEventListener('click', () => {
-        const link = document.createElement('a');
-        link.href = userData.pdf;
-        link.download = 'Resume.pdf';
-        link.click();
-      });
-    } else {
-      alert('No user data found. Please go back and fill the form.');
-    }
-  </script>
-
-</body>
-</html>

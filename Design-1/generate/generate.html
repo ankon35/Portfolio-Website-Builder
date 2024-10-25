@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Portfolio</title>
+  
+   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+   <link rel="stylesheet" href="generate.css">
+  
+</head>
+<body>
+
+
+  <!-- header design -->
+  <header class="header">
+    <a href="#" class="logo">Portfolio</a>
+
+    <i class='bx bx-menu' id="menu-icon"></i>
+
+    <nav class="navbar">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <!-- <a href="#services">Services</a> -->
+        <!-- <a href="#portfolio">Portfolio</a> -->
+        <a href="#contact">Contact</a>
+        
+    </nav>
+  </header>
+
+   <!-- home section design -->
+
+   <section class="home" id="home">
+    <div class="home-content">
+        <h3>Hello, It's me</h3>
+        <h1 id="userName"></h1>
+        <h3 >And I am a <span id="userTitle"></span></h3>
+        <p id="userdescription"></p>
+
+   
+
+    <!-- <a href="#" id="downloadResume" >Download CV</a> -->
+    <div class="social-media">
+      <a href="" id="facebook"><i class='bx bxl-facebook-circle' id="facebook"  ></i></a>
+      <a href=""><i class='bx bxl-linkedin' id="linkedin"></i></a>
+      <a href=""><i class='bx bxl-twitter' id="twitter" ></i></a>
+  </div>
+    <button id="downloadResume" class="btn">Download Resume</button>
+    
+
+</div>
+    <div class="home-img">
+        <img id="userPicture" src="" alt="User Picture">
+    
+    </div>
+<!-- <button id="downloadResume">Download Resume</button> -->
+
+</section>
+
+
+ <!-- About section design -->
+
+  <section class="about" id="about">
+        <div class="home-img">
+          <img id="userPicture2" src="" alt="User Picture">
+        </div>
+        <div class="about-content">
+            <h2 class="heading">About  <span>Me</span></h2>
+            <h3 id="userTitle"></h3>
+            <p id="descriptionAbout"></p>
+            <a href="#" class="btn">Read More</a>
+        </div>
+  </section> 
+
+
+  
+    <!-- contact section -->
+
+    <section class="contact" id="contact">
+        <h2 class="heading">Contact <span>Me</span></h2>
+
+        <form action="https://api.web3forms.com/submit" method="POST">
+            <div class="input-box">
+                <input type="hidden" name="access_key" value="d28c0bb3-d054-4dd3-822c-91a5ea5ea1c7">
+                <input type="text" name="name" required placeholder="Full Name" required>
+                <input type="text" name="email" required placeholder="Email Address" required>
+                
+            </div>
+            <div class="input-box">
+                <input type="number" name="number" required placeholder="Mobile Number" required>
+                <input type="text" name="Subject" required placeholder="Email Subject" required>
+                
+            </div>
+
+            <textarea name="" id="" cols="30" rows="10" name="Message" required placeholder="Your Message" required></textarea>
+            <input type="submit" value="Send Message" class="btn">
+        </form>
+    </section>
+
+    <!-- footer design -->
+
+    <footer class="footer">
+        <div class="footer-text">
+            <p>Copyright &copy; 2024 by <span>Ankon Hossain</span> | All Rights Reserved</p>
+        </div>
+
+        <div class="footer-iconTop">
+            <a href="#"><i class='bx bx-up-arrow-alt' ></i></a>
+        </div>
+    </footer>
+
+
+
+  <!-- <div class="container">
+    <img id="userPicture" src="" alt="User Picture">
+    <h1 id="userName"></h1>
+    <h2 id="userTitle"></h2>
+    <button id="downloadResume">Download Resume</button>
+  </div> -->
+
+<script src="generate.js"></script>
+
+<!-- <script src="https://unpkg.com/scrollreveal"></script> -->
+<!-- <script src="https://unpkg.com/scrollreveal"></script> -->
+
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"> </script> -->
+
+</body>
+</html>

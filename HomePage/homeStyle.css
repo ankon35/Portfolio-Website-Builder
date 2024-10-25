@@ -12,7 +12,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #4A00E0, #8E2DE2);
+    background: linear-gradient(270deg, #d2f4d2, #c6e6c6);
   }
   
   /* Main content container */
@@ -64,11 +64,13 @@
   .preview-btn {
     background-color: #FF4B2B;
     color: white;
+    text-decoration: none;
   }
   
   .generate-btn {
     background-color: #1D976C;
     color: white;
+    text-decoration: none;
   }
   
   button:hover {
