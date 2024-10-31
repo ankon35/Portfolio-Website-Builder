@@ -1,6 +1,10 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
 import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-import { getFirestore, collection, getDocs , query , where } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs , query , where, orderBy , limit } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+
+
+
 
 window.onload = function() {
     const firebaseConfig = {
@@ -24,6 +28,7 @@ window.onload = function() {
     const totalAdmin = document.getElementById('totalAdmin');
     
     const totalRegUser = document.getElementById('totalRegUser');
+    const totalDesign = document.getElementById('totalDesign')
     const logoutBtn = document.getElementById('logoutBtn');
 
     // Fetch all users from Firestore
@@ -73,10 +78,36 @@ window.onload = function() {
         }
     }
 
+    async function fetchTotalDesigns() {
+        console.log("Fetching designs from Firestore...");
+        try {
+            // Create a query to get the latest document from 'portfolioLengths'
+            const q = query(collection(db, "portfolioLengths"), orderBy("timestamp", "desc"), limit(1));
+    
+            // Fetch the latest document
+            const querySnapshot = await getDocs(q);
+    
+            if (!querySnapshot.empty) {
+                // Get the latest document data
+                const latestDoc = querySnapshot.docs[0].data();
+                totalDesign.textContent = latestDoc.length;
+                console.log("Latest Portfolio Length:", latestDoc.length);
+                console.log("Timestamp of Latest Update:", latestDoc.timestamp);
+            } else {
+                console.log("No documents found in 'portfolioLengths'.");
+            }
+        } catch (error) {
+            console.error("Error fetching latest document:", error);
+        }
+    }
+
+  
     // Fetch total users on page load
     fetchTotalUsers();
     fetchTotalAdmins();
     fetchTotalRegUsers(); 
+    fetchTotalDesigns();
+    // getDesignCount();
 
 
     // Log-Out
