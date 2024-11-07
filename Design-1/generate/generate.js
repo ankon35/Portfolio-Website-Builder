@@ -1,99 +1,33 @@
+// Import and configure Firebase
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js';
+import { getFirestore, doc, setDoc, increment } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js';
 
-const userData = JSON.parse(localStorage.getItem('userData'));
-
-if (userData) {
-  document.getElementById('userName').textContent = userData.name;
-  document.getElementById('userTitle').textContent = userData.title;
-  document.getElementById('userdescription').textContent = userData.description;
-  document.getElementById('facebook').href = userData.facebook;
-  document.getElementById('linkedin').href = userData.linkedin;
-  document.getElementById('twitter').href = userData.twitter;
-  document.getElementById('descriptionAbout').textContent = userData.descriptionAbout;
-  document.getElementById('userPicture').src = userData.picture;
-  document.getElementById('userPicture2').src = userData.picture;
-
-  document.getElementById('downloadResume').addEventListener('click', () => {
-    const link = document.createElement('a');
-    link.href = userData.pdf;
-    link.download = 'Resume.pdf';
-    link.click();
-  });
-} else {
-  alert('No user data found. Please go back and fill the form.');
-}
-
-
-
-// Toogle icon Navbar
-
-let menuIcon = document.querySelector('#menu-icon');
-let navbar = document.querySelector('.navbar');
-
-
-menuIcon.onclick = () => {
-    menuIcon.classList.toggle('bx-x');
-    navbar.classList.toggle('active');
-}
-
-
-// Scroll section active link
-
-let sections = document.querySelectorAll('section');
-let navLink = document.querySelectorAll('header nav a');
-
-window.onscroll =() =>{
-
-    sections.forEach(sec =>{
-        let top = window.scrollY;
-        let offset = sec.offsetTop - 150;
-        let height = sec.offsetHeight;
-        let id = sec.getAttribute('id');
-
-        if(top >= offset && top < offset + height){
-            navLink.forEach(links => {
-                links.classList.remove('active');
-                document.querySelector('header nav a[href*=' + id +']').classList.add('active');
-            });
-        }
-    });
-
-
-    //stick nav bar
-
-    let header = document.querySelector('header');
-    header.classList.toggle('sticky' , window.scrollY > 100);
-
-
-    //remove toggle icon and navbar when click navbar link
-
-    menuIcon.classList.remove('bx-x');
-    navbar.classList.remove('active');
-
-
-
-
-    
+const firebaseConfig = {
+    apiKey: "AIzaSyAXOpxM81BD8jXsjUv4hzXkIUOAysTZMyo",
+    authDomain: "portbuilder-4f719.firebaseapp.com",
+    projectId: "portbuilder-4f719",
+    storageBucket: "portbuilder-4f719.appspot.com",
+    messagingSenderId: "761086433060",
+    appId: "1:761086433060:web:9757e662051e553d2805b1"
 };
 
-//scroll reveal
 
-// ScrollReveal({ 
-//     reset: true ,
-//     distance: '80px',
-//     duration: 2000,
-//     delay: 200
-// });
+// ----------------------------------------------------------------------------
+//                                Initialize Firebase
+// ----------------------------------------------------------------------------
 
-// ScrollReveal().reveal('.home-content, .heading', { origin: 'top'});
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-// ScrollReveal().reveal('.home-img, .portfolio-box , .contact form ', { origin: 'bottom'});
+document.getElementById('create-repo').addEventListener('click', async function() {
+    const userName = 'CraftedByAnkon'; // Replace with dynamic user input if needed
+    const userDocRef = doc(db, "Host-List", userName); // Use the `doc` function to reference the document
 
+    // Set the document with incremented count
+    await setDoc(userDocRef, {
+        name: userName,
+        count: increment(1) // Increment count by 1
+    }, { merge: true }); // Merge to update the count without overwriting other fields
 
-
-
-// ScrollReveal().reveal('.home-content h1, .about-img', { origin: 'top'});
-
-// ScrollReveal().reveal('.home-content p, .about-content', { origin: 'top'});
-
-
-
+    console.log(`User  ${userName} count updated in Firebase.`);
+});

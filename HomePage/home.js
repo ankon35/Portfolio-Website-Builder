@@ -1,4 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
 import { getFirestore, collection, getDocs, setDoc, doc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
 window.onload = async function() {
@@ -11,11 +12,21 @@ window.onload = async function() {
         appId: "1:761086433060:web:9757e662051e553d2805b1"
     };
 
-    // Initialize Firebase
+    // ----------------------------------------------------------------------------
+    //                                Initialize Firebase
+    // ----------------------------------------------------------------------------
+    
+
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+    const auth = getAuth();
 
-    // Count the number of portfolio items
+    // ----------------------------------------------------------------------------
+    //                   Count the Total portfolio from firebase
+    // ----------------------------------------------------------------------------
+
+
+
     const portfolioItems = document.querySelectorAll('.container.portfolio');
     const portfolioLength = portfolioItems.length;
 
@@ -50,4 +61,24 @@ window.onload = async function() {
             console.log("No update needed, length is the same.");
         }
     }
+
+
+
+    // ----------------------------------------------------------------------------
+    //                                Log Out
+    // ----------------------------------------------------------------------------
+
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    logoutBtn.addEventListener('click', async () => {
+        try {
+            await signOut(auth);
+            alert('Logged out successfully!');
+            window.location.href = '/Portfolio-Website-Builder/LoginPage/index.html';
+        } catch (error) {
+            console.error("Error logging out:", error);
+        }
+    });
+
+
 };

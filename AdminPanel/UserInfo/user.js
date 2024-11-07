@@ -15,19 +15,37 @@ window.onload = function() {
         appId: "1:761086433060:web:9757e662051e553d2805b1"
     };
 
-    // Initialize Firebase
+
+    // ----------------------------------------------------------------------------
+    //                                Initialize Firebase
+    // ----------------------------------------------------------------------------
+
+
     const app = initializeApp(firebaseConfig);
     const auth = getAuth();
     const db = getFirestore();
 
     console.log("Firebase initialized:", app);
 
-    // Get references to UI elements
+
+
+    // ----------------------------------------------------------------------------
+    //                                Get ID from UI
+    // ----------------------------------------------------------------------------
+
+
     const userTableBody = document.getElementById('userTable').getElementsByTagName('tbody')[0];
     const roleSelect = document.getElementById('roleSelect');
     const logoutBtn = document.getElementById('logoutBtn');
 
-    // Fetch all users from Firestore
+
+
+    // ----------------------------------------------------------------------------
+    //                        Fetch All type of Users Information
+    // ----------------------------------------------------------------------------
+
+
+
     async function fetchUsers(roleFilter = 'all') {
         console.log("Fetching users from Firestore...");
         try {
@@ -54,10 +72,14 @@ window.onload = function() {
         }
     }
 
-    // Fetch users on page load
+
     fetchUsers();
 
-    // Event listener for role selection
+
+    // ----------------------------------------------------------------------------
+    //                                Role Filter
+    // ----------------------------------------------------------------------------
+    
     roleSelect.addEventListener('change', function() {
         const selectedRole = this.value;
         fetchUsers(selectedRole); // Fetch users based on selected role
@@ -65,7 +87,11 @@ window.onload = function() {
 
 
 
-    // Logout functionality
+    // ----------------------------------------------------------------------------
+    //                                Log Out
+    // ----------------------------------------------------------------------------
+
+
     logoutBtn.addEventListener('click', async () => {
         try {
             await signOut(auth);

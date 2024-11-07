@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
 import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-import { getFirestore, collection, getDocs , query , where, orderBy , limit } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs , query , where, orderBy , limit , getCountFromServer  } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
 
 
@@ -16,22 +16,38 @@ window.onload = function() {
         appId: "1:761086433060:web:9757e662051e553d2805b1"
     };
 
-    // Initialize Firebase
+   
+    // ----------------------------------------------------------------------------
+    //                                Initialize Firebase
+    // ----------------------------------------------------------------------------
+
+
     const app = initializeApp(firebaseConfig);
     const auth = getAuth();
     const db = getFirestore();
 
     console.log("Firebase initialized:", app);
 
-    // Get references to UI elements
+
+    // ----------------------------------------------------------------------------
+    //                                Get ID from UI
+    // ----------------------------------------------------------------------------
+
+
     const totalUsersElement = document.getElementById('totalUsers');
     const totalAdmin = document.getElementById('totalAdmin');
     
     const totalRegUser = document.getElementById('totalRegUser');
     const totalDesign = document.getElementById('totalDesign')
     const logoutBtn = document.getElementById('logoutBtn');
+    
 
-    // Fetch all users from Firestore
+
+    // ----------------------------------------------------------------------------
+    //                                Fetch Total Users
+    // ----------------------------------------------------------------------------
+
+
     async function fetchTotalUsers() {
         console.log("Fetching users from Firestore...");
         try {
@@ -45,7 +61,9 @@ window.onload = function() {
     }
 
     
-
+    // ----------------------------------------------------------------------------
+    //                                Fetch Total Admins
+    // ----------------------------------------------------------------------------
 
 
     async function fetchTotalAdmins() {
@@ -64,6 +82,11 @@ window.onload = function() {
 
 
 
+    // ----------------------------------------------------------------------------
+    //                                Fetch Total Register Users
+    // ----------------------------------------------------------------------------
+
+
     async function fetchTotalRegUsers() {
         console.log("Fetching admins from Firestore...");
         try {
@@ -77,6 +100,11 @@ window.onload = function() {
             totalRegUser.textContent = 'Error fetching admins';
         }
     }
+
+
+    // ----------------------------------------------------------------------------
+    //                                Fetch Total Design
+    // ----------------------------------------------------------------------------
 
     async function fetchTotalDesigns() {
         console.log("Fetching designs from Firestore...");
@@ -101,16 +129,25 @@ window.onload = function() {
         }
     }
 
+
+
+
   
-    // Fetch total users on page load
+    // ----------------------------------------------------------------------------
+    //                                Call All Methods
+    // ----------------------------------------------------------------------------
+
+    
     fetchTotalUsers();
     fetchTotalAdmins();
     fetchTotalRegUsers(); 
     fetchTotalDesigns();
-    // getDesignCount();
+    
 
-
-    // Log-Out
+    
+    // ----------------------------------------------------------------------------
+    //                                Log Out
+    // ----------------------------------------------------------------------------
 
     logoutBtn.addEventListener('click', async () => {
         try {

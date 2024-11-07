@@ -15,7 +15,11 @@ const firebaseConfig = {
     measurementId: "G-ZH75VMXJ52"
 };
 
-// Initialize Firebase
+// ----------------------------------------------------------------------------
+//                                Initialize Firebase
+// ----------------------------------------------------------------------------
+
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore(app); // Firestore instance
@@ -36,7 +40,12 @@ loginForm.addEventListener("submit", async (event) => {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // Check if the email is verified
+    
+
+    // ----------------------------------------------------------------------------
+    //                   Check if the email is verified
+    // ----------------------------------------------------------------------------
+
         if (!user.emailVerified) {
             alert("Please verify your email before logging in.");
             await signOut(auth); // Log out the user if email is not verified
