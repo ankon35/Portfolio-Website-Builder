@@ -77,32 +77,23 @@ window.onscroll =() =>{
 
 //scroll reveal
 
-ScrollReveal({ 
-    reset: true ,
-    distance: '80px',
-    duration: 2000,
-    delay: 200
-});
+// ScrollReveal({ 
+//     reset: true ,
+//     distance: '80px',
+//     duration: 2000,
+//     delay: 200
+// });
 
-ScrollReveal().reveal('.home-content, .heading', { origin: 'top'});
+// ScrollReveal().reveal('.home-content, .heading', { origin: 'top'});
 
-ScrollReveal().reveal('.home-img, .portfolio-box , .contact form ', { origin: 'bottom'});
-
-
+// ScrollReveal().reveal('.home-img, .portfolio-box , .contact form ', { origin: 'bottom'});
 
 
-ScrollReveal().reveal('.home-content h1, .about-img', { origin: 'top'});
-
-ScrollReveal().reveal('.home-content p, .about-content', { origin: 'top'});
 
 
-//multiple text
+// ScrollReveal().reveal('.home-content h1, .about-img', { origin: 'top'});
 
-// const type = new Typed('.multiple-text', {
-//     strings: ['Business Manager', 'Sales Specialist', 'Team Player' , 'Teacher' , 'Good Mother' ],
-//     typeSpeed: 100,
-//     backSpeed: 100,
-//     backDelay: 1000,
-//     loop: true
-// }
-// );
+// ScrollReveal().reveal('.home-content p, .about-content', { origin: 'top'});
+
+
+
