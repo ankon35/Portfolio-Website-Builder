@@ -1,0 +1,58 @@
+document.getElementById("service-form").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevents form from submitting the traditional way
+
+    // Collect data from the form
+    const formData = {
+        name: document.getElementById("name").value,
+        description: document.getElementById("description").value,
+        picture: document.getElementById("profile-picture").files[0]?.name,
+        serviceTagline: document.getElementById("service-tagline").value,
+        
+        // Service 1
+        service1Heading: document.getElementById("service-1-heading").value,
+        service1Description: document.getElementById("service-1-description").value,
+    
+        // Service 2
+        service2Heading: document.getElementById("service-2-heading").value,
+        service2Description: document.getElementById("service-2-description").value,
+    
+        // Service 3
+        service3Heading: document.getElementById("service-3-heading").value,
+        service3Description: document.getElementById("service-3-description").value,
+        
+        // Skills
+        skills: {
+            skill1: document.getElementById("skill-1").value,
+            skill2: document.getElementById("skill-2").value,
+            skill3: document.getElementById("skill-3").value,
+            skill4: document.getElementById("skill-4").value
+        },
+        skillsTag: document.getElementById("skills-tag").value,
+        skillsDescription: document.getElementById("skills-description").value,
+        cv: document.getElementById("cv").files[0]?.name, // Gets the filename of the uploaded CV
+    
+        // Contact Info
+        contact: {
+            address: document.getElementById("address").value,
+            phone: document.getElementById("phone").value,
+            email: document.getElementById("email").value
+        }
+    };
+    
+
+    // Save form data to localStorage
+    localStorage.setItem("formData", JSON.stringify(formData));
+
+    // Optionally, you can alert the user or log the data to the console
+    alert("Form data saved to localStorage!");
+    console.log(formData);
+
+
+    document.getElementById('generatePortfolio').addEventListener('click', function() {
+        if (document.getElementById('generatePortfolio').disabled) {
+          alert('Please complete the form and submit it before generating the portfolio.');
+        } else {
+          window.location.href = '/Portfolio-Website-Builder/Design-1/generate/generate.html';
+        }
+      });
+});
