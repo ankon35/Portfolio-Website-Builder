@@ -12,7 +12,7 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
 
     <!-- custom css file -->
-    <link rel="stylesheet" href="css/style.css" />
+    <!-- <link rel="stylesheet" href="preview.css" /> -->
 
     <!-- google font link -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -48,18 +48,21 @@
                         <a class="nav-link" href="#service">Service</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
+                        <a class="nav-link" href="#about">Skiils</a>
                     </li>
+
 
                 </ul>
             </div>
             <button class="c-btn ms-4 py-2 px-4 rounded-pill d-none d-md-block">Contact</button>
+            <!-- <a href="#contact" class="c-btn ms-4 py-2 px-4 rounded-pill d-none d-md-block " style="text-decoration: none; >Contact</a> -->
         </div>
     </nav>
+
     <!-- navbar ends here -->
 
     <!-- home section starts  -->
-    <section class="home pt-5 pb-5" id="home">
+    <section class=" pt-5 pb-5" id="home">
         <div class="row justify-content-evenly align-middle">
             <!-- here data-aos is used for adding aos animation  -->
             <div class="col-10 col-md-6 text-center text-md-start" data-aos="slide-right">
@@ -67,7 +70,7 @@
                     Hello! I Am <br /><span class="c-orange" id="name"></span>
                 </h2>
                 <p class="text-muted" id="description">
-                    
+
                 </p>
                 <button class="c-btn h-btn mt-3 py-3 px-5 rounded-pill">
                     Hire Me
@@ -75,7 +78,7 @@
                 <a href="" class="link ms-4 d-none">See My Work</a>
             </div>
             <div class="col-10 col-md-4 d-none d-md-block">
-                <img src="images/banner-01.webp" class="img-fluid" alt="" />
+                <img src="" id="picture" class="img-fluid" alt="Akkk" />
             </div>
         </div>
     </section>
@@ -86,7 +89,7 @@
         <div class="heading text-center">
             <small>My Expertise</small>
             <h3 id="service-tagline">
-                
+
             </h3>
         </div>
         <div class="row justify-content-evenly mt-5">
@@ -98,7 +101,7 @@
                     <div class="content mt-3">
                         <h4 id="service-1-heading"></h4>
                         <p class="text-muted" id="service-1-description">
-                            
+
                         </p>
                         <a href="" class="link">Read More</a>
                     </div>
@@ -112,7 +115,7 @@
                     <div class="content mt-3">
                         <h4 id="service-2-heading"></h4>
                         <p class="text-muted" id="service-2-description">
-                            
+
                         </p>
                         <a href="" class="link">Read More</a>
                     </div>
@@ -126,7 +129,7 @@
                     <div class="content mt-3">
                         <h4 id="service-3-heading"></h4>
                         <p class="text-muted" id="service-3-description">
-                            
+
                         </p>
                         <a href="" class="link">Read More</a>
                     </div>
@@ -186,7 +189,7 @@
                     <small>My Skills</small>
                     <h3 id="skills-tag"></h3>
                     <p class="text-muted" id="skills-description">
-                        
+
                     </p>
                     <!-- <p class="text-muted">
                         Quia voluptas sit aspernatur aut odit aut fugit, sed ruiano
@@ -194,8 +197,7 @@
                     </p> -->
                     <button class="c-btn h-btn mt-3 py-3 px-5 rounded-pill">
                         <!-- here download attribute is used for adding download functionality to button  -->
-                        <a href="Entry Level Web Developer Resume.pdf" download="SampleCV"
-                            style="text-decoration: none;color: #fff;">Download CV</a>
+                        <a id="cv" style="text-decoration: none; color: #fff;">Download CV</a>
                     </button>
                 </div>
             </div>
@@ -218,7 +220,7 @@
                     <div class="col-1">
                         <i class="bi bi-geo-alt-fill"></i>
                     </div>
-                    <div class="col-11">
+                    <div class="col-11" >
                         <p id="address"></p>
                     </div>
                 </div>
@@ -226,22 +228,19 @@
                     <div class="col-1">
                         <i class="bi bi-telephone-fill"></i>
                     </div>
-                    <div class="col-11">
+                    <div class="col-11" >
                         <p id="phone"></p>
                     </div>
                 </div>
 
                 <div class="row justify-content-evenly">
                     <div class="col-1">
-                      <i class="bi bi-globe-americas"></i>
+                        <i class="bi bi-globe-americas"></i>
                     </div>
-                    <div class="col-11">
-                      <p id="email"></p>
+                    <div class="col-11" >
+                        <p id="email"></p>
                     </div>
-                  </div>
                 </div>
-
-                
             </div>
             <div class="col-md-5 col-10 mt-3 mt-md-0" data-aos="slide-left">
                 <div class="contact-form">
@@ -326,43 +325,60 @@
 
 <script>
     // On page load, retrieve the stored data from localStorage and populate the form fields
-window.addEventListener("DOMContentLoaded", function() {
-    // Check if there is any data saved in localStorage
-    const storedData = localStorage.getItem("formData");
-    
-    if (storedData) {
-        // Parse the JSON string back into an object
-        const formData = JSON.parse(storedData);
-        
-        // Populate the form fields with the saved data
-        document.getElementById("name").value = formData.name || '';
-        document.getElementById("description").value = formData.description || '';
-        document.getElementById("service-tagline").value = formData.serviceTagline || '';
-        document.getElementById("service-1-heading").value = formData.serviceHeading || '';
-        document.getElementById("service-1-description").value = formData.serviceDescription || '';
-        document.getElementById("service-2-heading").value = formData.serviceHeading || '';
-        document.getElementById("service-2-description").value = formData.serviceDescription || '';
-        document.getElementById("service-3-heading").value = formData.serviceHeading || '';
-        document.getElementById("service-3-description").value = formData.serviceDescription || '';
-        document.getElementById("skill-1").value = formData.skills.skill1 || '';
-        document.getElementById("skill-2").value = formData.skills.skill2 || '';
-        document.getElementById("skill-3").value = formData.skills.skill3 || '';
-        document.getElementById("skill-4").value = formData.skills.skill4 || '';
-        document.getElementById("skills-tag").value = formData.skillsTag || '';
-        document.getElementById("skills-description").value = formData.skillsDescription || '';
-        document.getElementById("address").value = formData.contact.address || '';
-        document.getElementById("phone").value = formData.contact.phone || '';
-        document.getElementById("email").value = formData.contact.email || '';
-        
-        // Display the filename for the CV (if available)
-        if (formData.cv) {
-            const cvLabel = document.querySelector("label[for='cv']");
-            cvLabel.textContent = `CV (Uploaded: ${formData.cv})`;
+    window.onload = function () {
+        const formData = JSON.parse(localStorage.getItem('formData'));
+        if (formData) {
+            // Populate the form fields with the saved data
+            document.getElementById("name").textContent = formData.name;
+            document.getElementById("description").textContent = formData.description;
+            document.getElementById("picture").src = formData.picture;
+            document.getElementById("service-tagline").textContent = formData.serviceTagline;
+
+            document.getElementById("service-1-heading").textContent = formData.service1Heading;
+            document.getElementById("service-1-description").textContent = formData.service1Description;
+
+            document.getElementById("service-2-heading").textContent = formData.service2Heading;
+            document.getElementById("service-2-description").textContent = formData.service2Description;
+
+            document.getElementById("service-3-heading").textContent = formData.service3Heading;
+            document.getElementById("service-3-description").textContent = formData.service3Description;
+
+            document.getElementById("skill-1").textContent = formData.skills.skill1;
+            document.getElementById("skill-2").textContent = formData.skills.skill2;
+            document.getElementById("skill-3").textContent = formData.skills.skill3;
+            document.getElementById("skill-4").textContent = formData.skills.skill4;
+
+            document.getElementById("skills-tag").textContent = formData.skillsTag;
+            document.getElementById("skills-description").textContent = formData.skillsDescription;
+
+            document.getElementById("address").textContent = formData.address;
+            document.getElementById("phone").textContent = formData.phone;
+            document.getElementById("email").textContent = formData.email;
+
+            // Display the uploaded picture
+            if (formData.picture) {
+                const pictureElement = document.getElementById("picture");
+                pictureElement.src = formData.picture; // Set the image source to the base64 data
+                pictureElement.style.display = 'block'; // Make sure the image is visible
+            }
+
+            // Set up the click event for the CV download
+            document.getElementById('cv').addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent default anchor behavior
+                const formData = JSON.parse(localStorage.getItem('formData'));
+                if (formData && formData.cv) {
+                    const link = document.createElement('a');
+                    link.href = formData.cv; // Use the base64 data stored in localStorage
+                    link.download = 'Resume.pdf'; // Set the name for the downloaded file
+                    link.click(); // Trigger the download
+                } else {
+                    alert('CV not found in local storage.');
+                }
+            });
+        } else {
+            alert('No form data found in local storage.');
         }
-    } else {
-        console.log("No form data found in localStorage.");
-    }
-});
+    };
 
 </script>
 
