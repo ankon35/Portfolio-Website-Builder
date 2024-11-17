@@ -50,11 +50,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#about">Skiils</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
 
 
                 </ul>
             </div>
-            <button class="c-btn ms-4 py-2 px-4 rounded-pill d-none d-md-block">Contact</button>
+            <button class="c-btn ms-4 py-2 px-4 rounded-pill d-none d-md-block" id="create-repo">Host The
+                Website</button>
             <!-- <a href="#contact" class="c-btn ms-4 py-2 px-4 rounded-pill d-none d-md-block " style="text-decoration: none; >Contact</a> -->
         </div>
     </nav>
@@ -78,7 +82,7 @@
                 <a href="" class="link ms-4 d-none">See My Work</a>
             </div>
             <div class="col-10 col-md-4 d-none d-md-block">
-                <img src="" id="picture" class="img-fluid" alt="Akkk" />
+                <img src="" id="picture" class="img-fluid" alt="Loading..." />
             </div>
         </div>
     </section>
@@ -220,7 +224,7 @@
                     <div class="col-1">
                         <i class="bi bi-geo-alt-fill"></i>
                     </div>
-                    <div class="col-11" >
+                    <div class="col-11">
                         <p id="address"></p>
                     </div>
                 </div>
@@ -228,7 +232,7 @@
                     <div class="col-1">
                         <i class="bi bi-telephone-fill"></i>
                     </div>
-                    <div class="col-11" >
+                    <div class="col-11">
                         <p id="phone"></p>
                     </div>
                 </div>
@@ -237,7 +241,7 @@
                     <div class="col-1">
                         <i class="bi bi-globe-americas"></i>
                     </div>
-                    <div class="col-11" >
+                    <div class="col-11">
                         <p id="email"></p>
                     </div>
                 </div>
@@ -299,7 +303,13 @@
         <hr class="text-muted my-4" />
 
         <p>Copyright 2024 Portfolio | All Rights Reserved.</p>
+
+
+
+
     </footer>
+
+
     <!-- footer section ends here -->
 
     <!-- bootstrap javascript cdn link  -->
@@ -317,9 +327,16 @@
         });
     </script>
     <!-- custom js file linking -->
-    <script src="generate.js"></script>
+    <script src="generate.js" type="module" defer></script>
 
 </body>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js" type="module" defer></script>
+<script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js" type="module" defer></script>
 
 
 
@@ -380,6 +397,227 @@
         }
     };
 
+
+
+
+
+    // ----------------------------------------------------------------------------
+    //                     Create ZIP file and download
+    // ----------------------------------------------------------------------------
+
+
+    document.getElementById('create-repo').addEventListener('click', function () {
+        const zip = new JSZip();
+
+        // Get the button element
+        const button = document.getElementById('create-repo');
+
+        // Hide the button
+        button.style.display = 'none';
+
+
+
+
+        // Get the outer HTML without the button
+        const outerHTMLWithoutButton = document.documentElement.outerHTML.replace(button.outerHTML, '');
+
+        // Get the inner HTML without the button
+        const innerHTMLWithoutButton = document.body.innerHTML.replace(button.outerHTML, '');
+
+        // Add the modified outer HTML file to the zip
+        zip.file("portfolio_website.html", outerHTMLWithoutButton);
+
+        // Add the modified inner HTML file as a .txt file to the zip
+        zip.file("source-file.txt", innerHTMLWithoutButton); // Save inner HTML as a .txt file
+
+        // Add hosting instructions to the zip
+        const hostingInstructions = `
+                How to Host Your HTML Files
+
+                ##1. Using GitHub Pages:
+
+                - Create a GitHub repository and push your HTML files to the repository.
+                - Go to the repository settings.
+                - Scroll down to the "GitHub Pages" section.
+                - Select the branch you want to use (usually 'main') and click "Save".
+                - Your site will be published at https://<username>.github.io/<repository-name>/.
+  `;
+
+        // Add hosting instructions as a .txt file
+        zip.file("hosting_instructions.txt", hostingInstructions.trim());
+
+
+        // ----------------------------------------------------------------------------
+        //                     Generate the zip file
+        // ----------------------------------------------------------------------------
+
+
+        zip.generateAsync({ type: "blob" }).then(function (content) {
+            // Create a link element
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(content);
+            link.download = "portfolio.zip"; // Set the file name for the zip
+            document.body.appendChild(link);
+            link.click(); // Trigger the download
+            document.body.removeChild(link); // Clean up
+
+        });
+    });
+
+
+
+
+
+    // htmlcss progress circular bar 
+    let htmlProgress = document.querySelector(".html-css"),
+        htmlValue = document.querySelector(".html-progress");
+
+    let htmlStartValue = 0,
+        htmlEndValue = 90,
+        htmlspeed = 30;
+
+    let progresshtml = setInterval(() => {
+        htmlStartValue++;
+
+        htmlValue.textContent = `${htmlStartValue}%`;
+        htmlProgress.style.background = `conic-gradient(#fca61f ${htmlStartValue * 3.6
+            }deg, #ededed 0deg)`;
+
+        if (htmlStartValue == htmlEndValue) {
+            clearInterval(progresshtml);
+        }
+    }, htmlspeed);
+
+    // javasript progress circular bar 
+    let javascriptProgress = document.querySelector(".javascript"),
+        javascriptValue = document.querySelector(".javascript-progress");
+
+    let javascriptStartValue = 0,
+        javascriptEndValue = 75,
+        jsspeed = 30;
+
+    let progressjs = setInterval(() => {
+        javascriptStartValue++;
+
+        javascriptValue.textContent = `${javascriptStartValue}%`;
+        javascriptProgress.style.background = `conic-gradient(#7d2ae8 ${javascriptStartValue * 3.6
+            }deg, #ededed 0deg)`;
+
+        if (javascriptStartValue == javascriptEndValue) {
+            clearInterval(progressjs);
+        }
+    }, jsspeed);
+
+    // php progress circular bar 
+    let phpProgress = document.querySelector(".php"),
+        phpValue = document.querySelector(".php-progress");
+
+    let phpStartValue = 0,
+        phpEndValue = 80,
+        phpspeed = 30;
+
+    let progressphp = setInterval(() => {
+        phpStartValue++;
+
+        phpValue.textContent = `${phpStartValue}%`;
+        phpProgress.style.background = `conic-gradient(#20c997 ${phpStartValue * 3.6
+            }deg, #ededed 0deg)`;
+
+        if (phpStartValue == phpEndValue) {
+            clearInterval(progressphp);
+        }
+    }, phpspeed);
+
+    // reactjs progress circular bar 
+    let reactProgress = document.querySelector(".reactjs"),
+        reactValue = document.querySelector(".reactjs-progress");
+
+    let reactStartValue = 0,
+        reactEndValue = 30,
+        rjsspeed = 30;
+
+    let progressreact = setInterval(() => {
+        reactStartValue++;
+
+        reactValue.textContent = `${reactStartValue}%`;
+        reactProgress.style.background = `conic-gradient(#3f396d ${reactStartValue * 3.6
+            }deg, #ededed 0deg)`;
+
+        if (reactStartValue == reactEndValue) {
+            clearInterval(progressreact);
+        }
+    }, rjsspeed);
+
+
+    // filter using javascript
+    $(document).ready(function () {
+        $(".filter-item").click(function () {
+            const value = $(this).attr("data-filter");
+            if (value == "all") {
+                $(".post").show("1000");
+            } else {
+                $(".post")
+                    .not("." + value)
+                    .hide("1000");
+                $(".post")
+                    .filter("." + value)
+                    .show("1000");
+            }
+        });
+    });
+
+
+    // javascript for sticky navbar even if u scroll the navbar will be fixed
+    document.addEventListener("DOMContentLoaded", function () {
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 50) {
+                document.getElementById('navbar-top').classList.add('fixed-top');
+                // add padding top to show content behind navbar
+                navbar_height = document.querySelector('.navbar').offsetHeight;
+                document.body.style.paddingTop = navbar_height + 'px';
+            } else {
+                document.getElementById('navbar-top').classList.remove('fixed-top');
+                // remove padding top from body
+                document.body.style.paddingTop = '0';
+            }
+        });
+    });
+
+
+    // adding funtionality to back to top button 
+
+    //Get the button
+    let mybutton = document.getElementById("btn-back-to-top");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+        scrollFunction();
+    };
+    function scrollFunction() {
+        if (
+            document.body.scrollTop > 20 ||
+            document.documentElement.scrollTop > 20
+        ) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+    // When the user clicks on the button, scroll to the top of the document
+    mybutton.addEventListener("click", function () {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    });
+
+
+
+
+
+
+
+
+
+
 </script>
 
 
@@ -387,461 +625,496 @@
 
 <style>
     /* appling google font over the website  */
-    body {
-        font-family: 'Josefin Sans', sans-serif;
-        font-weight: 400;
-    }
+body{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    /* width: 100vw; */
+}
+/* styling menu icon */
+.nav-menu{
+    border: none;
+    background-color: #fff;
+    font-size: 1.5rem;
+    color: #fca61f;
+}
+/* styling navbar links  */
+.navbar-nav a{
+    color: black;
+    position: relative;
+}
+.navbar-nav a:hover{
+    color: #fca61f;
+}
+.navbar-nav a:after {    
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    top: 35px;
+    position: absolute;
+    background: #fca61f;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+  }
+.navbar-nav a:hover:after { 
+    width: 100%; 
+    left: 0; 
+  }
+  /* styling contact btn  */
+.c-btn{
+    border: none;
+    background: #fca61f;
+    color: #fff;
+    font-size: 1.2rem;
+}
+/* styling home section starts */
+.home{
+    background: linear-gradient(33deg, rgba(242,242,255,1) 0%, rgba(235,249,255,1) 100%);
+    padding: 30px 0px 10px 0px;
+}
+.home h2{
+    font-size: 3rem;
+    line-height: 4rem;
+}
+.c-orange{
+    color: #6f34fe;
+    font-weight: 700;
+    font-size: 4rem;
+}
+.home p{
+    width: fit-content;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+}
+.h-btn:hover{
+    background: #6f34fe;
+    color: #fff;
+    transform: translateY(-20px);
+    transition-duration: 1s;
+}
+.link{
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #fca61f;
+    position: relative;
+}
+.link::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    top: 20px;
+    background-color: #6f34fe;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+.link:hover{
+    color: #6f34fe;
+}
+.link:hover::after{
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+/* adding animation to home section image  */
+.home img {
+    animation: floatimg 4s ease-in-out infinite;
+    /* Optional: Add a smoother transition on hover */
+    transition: transform 0.3s ease;
+}
 
-    /* styling menu icon */
-    .nav-menu {
-        border: none;
-        background-color: #fff;
-        font-size: 1.5rem;
-        color: #fca61f;
+@keyframes floatimg {
+    0% {
+        transform: translateX(0);
     }
-
-    /* styling navbar links  */
-    .navbar-nav a {
-        color: black;
-        position: relative;
+    50% {
+        transform: translateX(-24px); /* Move left */
     }
-
-    .navbar-nav a:hover {
-        color: #fca61f;
+    100% {
+        transform: translateX(0);
     }
+}
 
-    .navbar-nav a:after {
-        background: none repeat scroll 0 0 transparent;
-        bottom: 0;
-        content: "";
-        display: block;
-        height: 2px;
-        left: 50%;
-        top: 35px;
-        position: absolute;
-        background: #fca61f;
-        transition: width 0.3s ease 0s, left 0.3s ease 0s;
-        width: 0;
-    }
+/* expertise section starts */
+.heading small{
+    color: #6f34fe;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.heading h3{
+    margin-top: 0.5rem;
+    color: #3f396d;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+.expertise h4{
+    color: #3f396d;
+    font-weight: 700;
+}
+.expertise a{
+    text-decoration: none;
+    color: #fca61f;
+}
+.expertise a:hover{
+    color: #6f34fe;
+}
+.expertise .service-card{
+    text-align: center;
+    padding: 15px 15px;
+    border-radius: 0.7rem;
+}
 
-    .navbar-nav a:hover:after {
-        width: 100%;
-        left: 0;
-    }
+/* skill section starts */
+.skill{
+    background-color: rgb(234, 234, 249);
+}
+.progress-card{
+    padding: 12% 10% 10% 15%;
+    background-color: #fff;
+    text-align: center;
+    border-radius: 10%;
+}
+.progress-card:hover{
+    transform: scale(1.1,1.1);
+    transition-duration: 0.6s;
+}
+.circular-progress{
+    position: relative;
+    height: 130px;
+    width: 130px;
+    border-radius: 50%;
+    background: conic-gradient(#7d2ae8 3.6deg, #ededed 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.circular-progress::before{
+    content: "";
+    position: absolute;
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    background-color: #fff;
+}
+.progress-value{
+    position: relative;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.html-progress{
+    color: #fca61f;
+}
+.javascript-progress{
+    color: #6f34fe;
+}
+.php-progress{
+    color: #20c997;
+}
+.reactjs-progress{
+    color: #3f396d;
+}
+.text{
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+.heading p{
+    font-size: 1.3rem;
+}
 
-    /* styling contact btn  */
-    .c-btn {
-        border: none;
-        background: #fca61f;
-        color: #fff;
-        font-size: 1.2rem;
-    }
+/* portfolio section starts */
+#myBtnContainer{
+    margin-bottom: 45px;
+}
+#myBtnContainer button{
+  border: none;
+  color: black;
+  background: transparent;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;   
+  display: inline-block;
+  margin: 0 25px;
+}
+#myBtnContainer button:hover{
+    color: #fca61f;
+}
 
-    /* styling home section starts */
-    .home {
-        background: linear-gradient(33deg, rgba(242, 242, 255, 1) 0%, rgba(235, 249, 255, 1) 100%);
-        padding: 30px 0px 10px 0px;
-    }
+#myBtnContainer button:focus{
+    outline: none;
+}
+.post .content h4{
+    font-size: 1rem;
+    font-weight: 700;
+}
+.post .card{
+    border: none;
+}
 
+/* testimonial section starts */
+.testimonial img:hover{
+    transform: scale(1.2,1.2);
+    transition-duration: 1s;
+}
+.testimonial h4{
+    color: #3f396d;
+}
+.testimonial i{
+    font-size: 2.9rem;
+    color: #fca61f;
+    
+}
+.testimonial .nextprev-btn{
+    border: none;
+    background-color: #fff;
+}
+.prev:hover,.prev-btn:hover{
+    color:#6f34fe;
+    transform: translateX(-10px);
+    transition-duration: 1s;
+}
+.next:hover,.next-btn:hover{
+    color:#6f34fe;
+    transform: translateX(10px);
+    transition-duration: 1s;
+}
+
+/* blog section starts */
+.blog{
+    background-color: #f2f2ff;
+}
+.blog .blogpost .card{
+    border: none;
+    border-radius: 5%;
+}
+.nav-bg{
+    background-color: #fff;
+}
+
+.blog .blogpost small{
+    color: #6f34fe;
+    font-size: 1.1rem;
+}
+.blog .blogpost h4,.blogpost a{
+    color: #3f396d;
+    font-weight: 700;
+    margin-top: 1rem;
+    text-decoration: none;
+}
+.blogpost a:hover{
+    color: #fca61f;
+}
+.blog .blogpost .read-more-btn{
+    text-decoration: none;
+    color: #fca61f;
+    font-size: 1.1rem;
+}
+.blog .blogpost .read-more-btn:hover{
+    color: #6f34fe;
+}
+/* styling modal group  */
+.btn-c{
+    margin-left: 94%;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    margin-top: -3%;
+}
+.btn-c i{
+    color: #fca61f;
+}
+.modal-body .content span{
+    font-size: 1rem;
+}
+.modal-body .content small{
+    font-size: 1rem;
+    color: #6f34fe;
+}
+/* contact section starts */
+.contact{
+    background-color: #f3f3f3;
+}
+.contact-details i{
+    font-size: 1.5rem;
+    color: #fca61f;
+}
+.contact-details p{
+    font-size: 1.2rem;
+    margin-left: 1rem;
+}
+.contact-form .form-control:focus{
+    box-shadow: none;
+    border: 1px solid #fca61f;
+}
+.contact-form .form-control{
+    padding: 10px 10px;
+    width: 80%;
+}
+
+/* footer section starts */
+footer{
+    background-color: #211e39;
+}
+
+footer .link-group a{
+    margin-left: 10px;
+    margin-right: 10px;
+    text-decoration: none;
+    color: #6c757d;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
+footer .link-group a:hover{
+    color: #fca61f;
+}
+.social-links button{
+    border: none;
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    background-color: #fff;
+    padding: 14px 15px 10px 15px;
+}
+.social-links .dribble{
+    color: #f33a7e;
+}
+.social-links button:hover{
+    color: #fff;
+    transform: translateY(-20px);
+    transition-duration: 1s;
+}
+.social-links .dribble:hover{
+    background-color: #f33a7e;
+}
+.social-links .whatsapp{
+    color: #25D366;
+}
+.social-links .whatsapp:hover{
+    background-color: #25D366;
+}
+.social-links .behance{
+    color: #255afc;
+}
+.social-links .behance:hover{
+    background-color: #255afc;
+}
+
+/* styling back to top button */
+#btn-back-to-top {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    display: none;
+    font-size: 1.4rem;
+    background-color: #fca61f;
+    color: #fff;
+    animation: pulse 3s infinite;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
     .home h2 {
-        font-size: 3rem;
-        line-height: 4rem;
-    }
-
-    .c-orange {
-        color: #6f34fe;
-        font-weight: 700;
-        font-size: 4rem;
-    }
-
-    .home p {
-        width: fit-content;
-        margin-top: 1rem;
-        font-size: 1.2rem;
-    }
-
-    .h-btn:hover {
-        background: #6f34fe;
-        color: #fff;
-        transform: translateY(-20px);
-        transition-duration: 1s;
-    }
-
-    .link {
-        text-decoration: none;
-        font-size: 1.2rem;
-        color: #fca61f;
-        position: relative;
-    }
-
-    .link::after {
-        content: '';
-        position: absolute;
-        width: 100%;
-        transform: scaleX(0);
-        height: 2px;
-        bottom: 0;
-        left: 0;
-        top: 20px;
-        background-color: #6f34fe;
-        transform-origin: bottom right;
-        transition: transform 0.25s ease-out;
-    }
-
-    .link:hover {
-        color: #6f34fe;
-    }
-
-    .link:hover::after {
-        transform: scaleX(1);
-        transform-origin: bottom left;
-    }
-
-    /* adding animation to home section image  */
-    .home img {
-        animation: floatimg 4s ease-in-out infinite;
-    }
-
-    @keyframes floatimg {
-        0% {
-            transform: translateX(0);
-        }
-
-        50% {
-            transform: translateX(-24px);
-        }
-
-        100% {
-            transform: translateX(0);
-        }
-    }
-
-    /* expertise section starts */
-    .heading small {
-        color: #6f34fe;
-        font-size: 1.5rem;
-        font-weight: 600;
-    }
-
-    .heading h3 {
-        margin-top: 0.5rem;
-        color: #3f396d;
         font-size: 2.5rem;
-        font-weight: 700;
+        line-height: 3rem;
     }
-
-    .expertise h4 {
-        color: #3f396d;
-        font-weight: 700;
+    .c-orange {
+        font-size: 3rem;
     }
-
-    .expertise a {
-        text-decoration: none;
-        color: #fca61f;
-    }
-
-    .expertise a:hover {
-        color: #6f34fe;
-    }
-
-    .expertise .service-card {
-        text-align: center;
-        padding: 15px 15px;
-        border-radius: 0.7rem;
-    }
-
-    /* skill section starts */
-    .skill {
-        background-color: rgb(234, 234, 249);
-    }
-
-    .progress-card {
-        padding: 12% 10% 10% 15%;
-        background-color: #fff;
-        text-align: center;
-        border-radius: 10%;
-    }
-
-    .progress-card:hover {
-        transform: scale(1.1, 1.1);
-        transition-duration: 0.6s;
-    }
-
-    .circular-progress {
-        position: relative;
-        height: 130px;
-        width: 130px;
-        border-radius: 50%;
-        background: conic-gradient(#7d2ae8 3.6deg, #ededed 0deg);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .circular-progress::before {
-        content: "";
-        position: absolute;
-        height: 120px;
-        width: 120px;
-        border-radius: 50%;
-        background-color: #fff;
-    }
-
-    .progress-value {
-        position: relative;
-        font-size: 1.5rem;
-        font-weight: 600;
-    }
-
-    .html-progress {
-        color: #fca61f;
-    }
-
-    .javascript-progress {
-        color: #6f34fe;
-    }
-
-    .php-progress {
-        color: #20c997;
-    }
-
-    .reactjs-progress {
-        color: #3f396d;
-    }
-
-    .text {
+    .navbar-nav a {
         font-size: 1.2rem;
-        font-weight: 500;
     }
-
-    .heading p {
-        font-size: 1.3rem;
-    }
-
-    /* portfolio section starts */
-    #myBtnContainer {
-        margin-bottom: 45px;
-    }
-
-    #myBtnContainer button {
-        border: none;
-        color: black;
-        background: transparent;
-        font-size: 20px;
-        font-weight: 600;
-        cursor: pointer;
-        display: inline-block;
-        margin: 0 25px;
-    }
-
-    #myBtnContainer button:hover {
-        color: #fca61f;
-    }
-
-    #myBtnContainer button:focus {
-        outline: none;
-    }
-
-    .post .content h4 {
+    .c-btn {
         font-size: 1rem;
-        font-weight: 700;
     }
+}
 
-    .post .card {
-        border: none;
+@media (max-width: 992px) {
+    .home {
+        padding: 20px 0;
     }
-
-    /* testimonial section starts */
+    .home h2 {
+        font-size: 2rem;
+    }
+    .c-orange {
+        font-size: 2.5rem;
+    }
+    .home p {
+        font-size: 1rem;
+    }
+    .navbar-nav a {
+        font-size: 1rem;
+    }
+    .progress-card {
+        padding: 10% 5%;
+    }
+    .circular-progress {
+        height: 100px;
+        width: 100px;
+    }
     .testimonial img:hover {
-        transform: scale(1.2, 1.2);
-        transition-duration: 1s;
+        transform: scale(1.1);
     }
+}
 
+@media (max-width: 768px) {
+    .home h2 {
+        font-size: 1.5rem;
+    }
+    .c-orange {
+        font-size: 2rem;
+    }
+    .navbar-nav a {
+        font-size: 0.9rem;
+    }
+    .contact-form .form-control {
+        width: 100%;
+    }
+    .progress-card {
+        padding: 5% 5%;
+    }
+    .social-links button {
+        font-size: 1rem;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .home h2 {
+        font-size: 1.2rem;
+    }
+    .c-orange {
+        font-size: 1.5rem;
+    }
+    .navbar-nav a {
+        font-size: 0.8rem;
+    }
     .testimonial h4 {
-        color: #3f396d;
+        font-size: 1.2rem;
     }
-
-    .testimonial i {
-        font-size: 2.9rem;
-        color: #fca61f;
-
-    }
-
-    .testimonial .nextprev-btn {
-        border: none;
-        background-color: #fff;
-    }
-
-    .prev:hover,
-    .prev-btn:hover {
-        color: #6f34fe;
-        transform: translateX(-10px);
-        transition-duration: 1s;
-    }
-
-    .next:hover,
-    .next-btn:hover {
-        color: #6f34fe;
-        transform: translateX(10px);
-        transition-duration: 1s;
-    }
-
-    /* blog section starts */
-    .blog {
-        background-color: #f2f2ff;
-    }
-
-    .blog .blogpost .card {
-        border: none;
-        border-radius: 5%;
-    }
-
-    .nav-bg {
-        background-color: #fff;
-    }
-
-    .blog .blogpost small {
-        color: #6f34fe;
-        font-size: 1.1rem;
-    }
-
     .blog .blogpost h4,
     .blogpost a {
-        color: #3f396d;
-        font-weight: 700;
-        margin-top: 1rem;
-        text-decoration: none;
-    }
-
-    .blogpost a:hover {
-        color: #fca61f;
-    }
-
-    .blog .blogpost .read-more-btn {
-        text-decoration: none;
-        color: #fca61f;
-        font-size: 1.1rem;
-    }
-
-    .blog .blogpost .read-more-btn:hover {
-        color: #6f34fe;
-    }
-
-    /* styling modal group  */
-    .btn-c {
-        margin-left: 94%;
-        background-color: transparent;
-        border: none;
-        color: #fff;
-        font-size: 2rem;
-        margin-top: -3%;
-    }
-
-    .btn-c i {
-        color: #fca61f;
-    }
-
-    .modal-body .content span {
         font-size: 1rem;
     }
-
-    .modal-body .content small {
-        font-size: 1rem;
-        color: #6f34fe;
-    }
-
-    /* contact section starts */
-    .contact {
-        background-color: #f3f3f3;
-    }
-
-    .contact-details i {
-        font-size: 1.5rem;
-        color: #fca61f;
-    }
-
     .contact-details p {
-        font-size: 1.2rem;
-        margin-left: 1rem;
+        font-size: 1rem;
     }
-
-    .contact-form .form-control:focus {
-        box-shadow: none;
-        border: 1px solid #fca61f;
-    }
-
-    .contact-form .form-control {
-        padding: 10px 10px;
-        width: 80%;
-    }
-
-    /* footer section starts */
-    footer {
-        background-color: #211e39;
-    }
-
     footer .link-group a {
-        margin-left: 10px;
-        margin-right: 10px;
-        text-decoration: none;
-        color: #6c757d;
-        font-size: 1.1rem;
-        margin-top: 1rem;
+        font-size: 0.9rem;
     }
+}
 
-    footer .link-group a:hover {
-        color: #fca61f;
-    }
+/* Responsive back to top button */
+#btn-back-to-top {
+    font-size: 1rem;
+    padding: 10px 15px;
+}
 
-    .social-links button {
-        border: none;
-        margin-right: 1rem;
-        font-size: 1.2rem;
-        background-color: #fff;
-        padding: 14px 15px 10px 15px;
-    }
 
-    .social-links .dribble {
-        color: #f33a7e;
-    }
 
-    .social-links button:hover {
-        color: #fff;
-        transform: translateY(-20px);
-        transition-duration: 1s;
-    }
-
-    .social-links .dribble:hover {
-        background-color: #f33a7e;
-    }
-
-    .social-links .whatsapp {
-        color: #25D366;
-    }
-
-    .social-links .whatsapp:hover {
-        background-color: #25D366;
-    }
-
-    .social-links .behance {
-        color: #255afc;
-    }
-
-    .social-links .behance:hover {
-        background-color: #255afc;
-    }
-
-    /* styling back to top button */
-    #btn-back-to-top {
-        position: fixed;
-        bottom: 40px;
-        right: 40px;
-        display: none;
-        font-size: 1.4rem;
-        background-color: #fca61f;
-        color: #fff;
-        animation: pulse 3s infinite;
-    }
 </style>
 
 
