@@ -1,11 +1,4 @@
 
-
-
-
-
-
-
-
 // Import and configure Firebase
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js';
 import { getFirestore, doc, setDoc, increment } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js';

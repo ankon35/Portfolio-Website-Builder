@@ -332,6 +332,9 @@
 </body>
 
 
+    <!-- ----------------------------------------------------------------------------
+                                Import Files
+    ---------------------------------------------------------------------------- -->
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -341,7 +344,13 @@
 
 
 <script>
-    // On page load, retrieve the stored data from localStorage and populate the form fields
+
+
+    // ----------------------------------------------------------------------------
+    //    retrieve the stored data from localStorage and populate the form fields
+    // ----------------------------------------------------------------------------
+
+     
     window.onload = function () {
         const formData = JSON.parse(localStorage.getItem('formData'));
         if (formData) {
@@ -375,11 +384,17 @@
             // Display the uploaded picture
             if (formData.picture) {
                 const pictureElement = document.getElementById("picture");
-                pictureElement.src = formData.picture; // Set the image source to the base64 data
+                pictureElement.src = formData.picture;
                 pictureElement.style.display = 'block'; // Make sure the image is visible
             }
 
-            // Set up the click event for the CV download
+
+
+        // ----------------------------------------------------------------------------
+        //              Set up the click event for the CV download
+        // ----------------------------------------------------------------------------
+
+
             document.getElementById('cv').addEventListener('click', (event) => {
                 event.preventDefault(); // Prevent default anchor behavior
                 const formData = JSON.parse(localStorage.getItem('formData'));
@@ -419,14 +434,12 @@
         // Get the outer HTML without the button
         const outerHTMLWithoutButton = document.documentElement.outerHTML.replace(button.outerHTML, '');
 
-        // Get the inner HTML without the button
-        const innerHTMLWithoutButton = document.body.innerHTML.replace(button.outerHTML, '');
+        
 
         // Add the modified outer HTML file to the zip
-        zip.file("portfolio_website.html", outerHTMLWithoutButton);
+        zip.file("index.html", outerHTMLWithoutButton);
 
-        // Add the modified inner HTML file as a .txt file to the zip
-        zip.file("source-file.txt", innerHTMLWithoutButton); // Save inner HTML as a .txt file
+        
 
         // Add hosting instructions to the zip
         const hostingInstructions = `
@@ -463,10 +476,13 @@
     });
 
 
+    
+    // ----------------------------------------------------------------------------
+    //                     htmlcss progress circular bar
+    // ----------------------------------------------------------------------------
 
-
-
-    // htmlcss progress circular bar 
+    
+   
     let htmlProgress = document.querySelector(".html-css"),
         htmlValue = document.querySelector(".html-progress");
 
@@ -564,8 +580,12 @@
         });
     });
 
+    // ----------------------------------------------------------------------------
+    //      javascript for sticky navbar even if u scroll the navbar will be fixed
+    // ----------------------------------------------------------------------------
 
-    // javascript for sticky navbar even if u scroll the navbar will be fixed
+    
+
     document.addEventListener("DOMContentLoaded", function () {
         window.addEventListener('scroll', function () {
             if (window.scrollY > 50) {
@@ -582,9 +602,13 @@
     });
 
 
-    // adding funtionality to back to top button 
 
-    //Get the button
+    // ----------------------------------------------------------------------------
+    //              adding funtionality to back to top button 
+    // ----------------------------------------------------------------------------
+
+
+    
     let mybutton = document.getElementById("btn-back-to-top");
 
     // When the user scrolls down 20px from the top of the document, show the button

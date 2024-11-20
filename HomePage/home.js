@@ -98,7 +98,7 @@ window.onload = async function() {
         } else {
             // User is signed out
             console.log("No user is signed in.");
-            document.getElementById('userName').innerText = "Welcome, Guest!";
+            document.getElementById('userName').innerText = "Guest!";
         }
     });
 

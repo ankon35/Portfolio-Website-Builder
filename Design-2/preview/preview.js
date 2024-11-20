@@ -19,6 +19,7 @@ let progresshtml = setInterval(() => {
   }
 }, htmlspeed);
 
+
 // javasript progress circular bar 
 let javascriptProgress = document.querySelector(".javascript"),
   javascriptValue = document.querySelector(".javascript-progress");
@@ -40,6 +41,7 @@ let progressjs = setInterval(() => {
   }
 }, jsspeed);
 
+
 // php progress circular bar 
 let phpProgress = document.querySelector(".php"),
   phpValue = document.querySelector(".php-progress");
@@ -60,6 +62,7 @@ let progressphp = setInterval(() => {
     clearInterval(progressphp);
   }
 }, phpspeed);
+
 
 // reactjs progress circular bar 
 let reactProgress = document.querySelector(".reactjs"),

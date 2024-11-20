@@ -110,7 +110,7 @@ window.onload = function() {
         console.log("Fetching designs from Firestore...");
         try {
             // Create a query to get the latest document from 'portfolioLengths'
-            const q = query(collection(db, "portfolioLengths"), orderBy("timestamp", "desc"), limit(1));
+            const q = query(collection(db, "portfolioLengths"), orderBy("timestamp", "asc"), limit(1));
     
             // Fetch the latest document
             const querySnapshot = await getDocs(q);
@@ -119,8 +119,7 @@ window.onload = function() {
                 // Get the latest document data
                 const latestDoc = querySnapshot.docs[0].data();
                 totalDesign.textContent = latestDoc.length;
-                console.log("Latest Portfolio Length:", latestDoc.length);
-                console.log("Timestamp of Latest Update:", latestDoc.timestamp);
+                
             } else {
                 console.log("No documents found in 'portfolioLengths'.");
             }

@@ -231,13 +231,13 @@
             const outerHTMLWithoutButton = document.documentElement.outerHTML.replace(button.outerHTML, '');
 
             // Get the inner HTML without the button
-            const innerHTMLWithoutButton = document.body.innerHTML.replace(button.outerHTML, '');
+            // const innerHTMLWithoutButton = document.body.innerHTML.replace(button.outerHTML, '');
 
             // Add the modified outer HTML file to the zip
-            zip.file("portfolio_website.html", outerHTMLWithoutButton);
+            zip.file("index.html", outerHTMLWithoutButton);
 
             // Add the modified inner HTML file as a .txt file to the zip
-            zip.file("source-file.txt", innerHTMLWithoutButton); // Save inner HTML as a .txt file
+            // zip.file("source-file.txt", innerHTMLWithoutButton); // Save inner HTML as a .txt file
 
             // Add hosting instructions to the zip
             const hostingInstructions = `

@@ -1,7 +1,12 @@
 document.getElementById("service-form").addEventListener("submit", function (event) {
     event.preventDefault(); // Prevents form from submitting the traditional way
 
-    // Collect data from the form
+
+    // ----------------------------------------------------------------------------
+    //                       Collect data from the form
+    // ----------------------------------------------------------------------------
+
+    
     const formData = {
         name: document.getElementById("name").value,
         description: document.getElementById("description").value,
@@ -43,10 +48,17 @@ document.getElementById("service-form").addEventListener("submit", function (eve
     const picture = formData.picture;
     const cv = formData.cv;
 
+
+    // ----------------------------------------------------------------------------
+    //             Save form data to localStorage, including picture and CV data
+    // ----------------------------------------------------------------------------
+
+
+
     if (picture && cv) {
         readFile(picture, (pictureData) => {
             readFile(cv, (pdfData) => {
-                // Save form data to localStorage, including picture and CV data
+                // 
                 const dataToSave = {
                     ...formData,
                     picture: pictureData, // Store the base64 string of the image
