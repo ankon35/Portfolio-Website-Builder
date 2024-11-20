@@ -15,7 +15,7 @@
 
     <!-- header design -->
     <header class="header">
-        <a href="#" class="logo">Portfolio</a>
+        <a href="#" class="logo" >Portfolio</a>
 
 
         <i class='bx bx-menu' id="menu-icon"></i>
@@ -55,7 +55,7 @@
             <img id="userPicture" src="" alt="User Picture">
 
         </div>
-        
+
 
     </section>
 
@@ -133,6 +133,9 @@
 
     <script>
 
+
+
+
         // ----------------------------------------------------------------------------
         //                                Retrieve user data from local storage
         // ----------------------------------------------------------------------------
@@ -160,7 +163,7 @@
             //   alert('No user data found. Please go back and fill the form.');
         }
 
-        
+
         // ----------------------------------------------------------------------------
         //                               Toggle icon Navbar 
         // ----------------------------------------------------------------------------
@@ -192,19 +195,19 @@
                 }
             });
 
-            
-        // ----------------------------------------------------------------------------
-        //                                Stick nav bar
-        // ----------------------------------------------------------------------------
+
+            // ----------------------------------------------------------------------------
+            //                                Stick nav bar
+            // ----------------------------------------------------------------------------
 
 
             let header = document.querySelector('header');
             header.classList.toggle('sticky', window.scrollY > 100);
 
-        
-        // ----------------------------------------------------------------------------
-        //            Remove toggle icon and navbar when clicking navbar link
-        // ----------------------------------------------------------------------------
+
+            // ----------------------------------------------------------------------------
+            //            Remove toggle icon and navbar when clicking navbar link
+            // ----------------------------------------------------------------------------
 
 
             menuIcon.classList.remove('bx-x');
@@ -217,7 +220,7 @@
         //                     Create ZIP file and download
         // ----------------------------------------------------------------------------
 
-      
+
         document.getElementById('create-repo').addEventListener('click', function () {
             const zip = new JSZip();
 
@@ -253,12 +256,12 @@
   `;
 
             // Add hosting instructions as a .txt file
-            zip.file("hosting_instructions.txt", hostingInstructions.trim()); 
+            zip.file("hosting_instructions.txt", hostingInstructions.trim());
 
-          
-        // ----------------------------------------------------------------------------
-        //                     Generate the zip file
-        // ----------------------------------------------------------------------------
+
+            // ----------------------------------------------------------------------------
+            //                     Generate the zip file
+            // ----------------------------------------------------------------------------
 
 
             zip.generateAsync({ type: "blob" }).then(function (content) {

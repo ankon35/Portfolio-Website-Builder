@@ -12,11 +12,14 @@
 
   <header class="header">
     <div class="header-container">
-      <div class="username">Welcome, <span id="userName">Loading... </span></div>
-      <button id="logoutBtn" class="logout-btn" >Logout</button>
-      <!-- <li><a href="#" id="logoutBtn"  >Logout</a></li> -->
+        <div class="username">Welcome, <span id="userName">Loading... </span></div>
+        <nav class="navbar">
+            <button id="homeBtn" class="nav-btn" style="font-weight: bold; font-size: 17px">Home</button>
+            <button id="hostingInstructionsBtn" class="nav-btn" onclick="window.location.href='/Portfolio-Website-Builder/HostingInstruction/instruction.html'">Hosting Instructions</button>
+        </nav>
+        <!-- <button id="logoutBtn" class="logout-btn">Logout</button> -->
     </div>
-  </header>
+</header>
 
   <div class="container portfolio">
     <!-- Left side: Image section -->
@@ -52,12 +55,32 @@
     </div>
 
 
+
+   
+
   </div>
 
 
   
   
-
+  <footer class="footer">
+    <div class="footer-container">
+        <div class="footer-left">
+            <p>&copy; 2024 @AnkonHossain. All rights reserved.</p>
+        </div>
+        <div class="footer-center">
+            <ul class="developer-info">
+                <li><strong>Developer:</strong> Ankon Hossain</li>
+                <li><strong>Email:</strong> ankontheanalyst@gmail.com</li>
+                <!-- <li><strong>GitHub:</strong> <a href="https://github.com/ankon" target="_blank">github.com/ankon</a></li> -->
+                <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/ankonhossain/" target="_blank">ankonhossain</a></li>
+            </ul>
+        </div>
+        <div class="footer-right">
+            <button id="logoutBtn" class="logout-btn">Logout</button>
+        </div>
+    </div>
+</footer>
 
 
 

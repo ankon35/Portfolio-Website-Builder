@@ -18,6 +18,39 @@ body {
   margin: 0;
 }
 
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Adjusts spacing between elements */
+}
+
+.navbar {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+}
+
+.nav-btn {
+  padding: 10px 15px;
+  background-color: #1D976C; /* Example background color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.logout-btn {
+  padding: 10px 15px;
+  background-color: #dc3545; /* Example background color for logout */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+
+
 /* Header Styles */
 .header {
   width: 100%;
@@ -61,6 +94,84 @@ body {
 .logout-btn:hover {
   background-color: #d32f2f;
 }
+
+
+.footer {
+  background-color: #333; /* Dark background for the footer */
+  color: white; /* White text color */
+  padding: 20px; /* Padding around the footer */
+  position: relative; /* Allow positioning */
+  bottom: 0; /* Stick to the bottom */
+  width: 100%; /* Full width */
+  text-align: center; /* Centered text */
+}
+
+.footer-container {
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Space between items */
+  align-items: center; /* Center items vertically */
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+}
+
+.footer-left,
+.footer-center,
+.footer-right {
+  flex: 1; /* Allow sections to grow equally */
+  min-width: 200px; /* Minimum width for each section */
+  text-align: center; /* Center text in each section */
+  margin: 10px; /* Margin around sections */
+}
+
+.developer-info {
+  list-style-type: none; /* Remove default list styling */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+  text-align: left;
+}
+
+.developer-info li {
+  margin: 5px 0; 
+  color: white; /* White text color */
+}
+
+.developer-info a {
+  color: white;
+  text-decoration: none; /* Remove underline from links */
+}
+
+.developer-info a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+.logout-btn {
+  background-color: #ff4d4d; /* Red background for the logout button */
+  color: white; /* White text color */
+  border: none; /* No border */
+  padding: 10px 20px; /* Padding for the button */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 16px; /* Font size */
+}
+
+.logout-btn:hover {
+  background-color: #ff1a1a; /* Darker red on hover */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .footer-container {
+      flex-direction: column; /* Stack items vertically on smaller screens */
+      align-items: center; /* Center align items */
+  }
+
+  .footer-left,
+  .footer-center,
+  .footer-right {
+      text-align: center; /* Center text in each section */
+      margin: 5px 0; /* Adjust margin for vertical layout */
+  }
+}
+
 
 /* Responsive Header Styles */
 @media (max-width: 768px) {

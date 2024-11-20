@@ -42,16 +42,19 @@ document.getElementById("service-form").addEventListener("submit", function (eve
         email: document.getElementById("email").value,
 
         picture: document.getElementById("profile-picture").files[0], // Store file for later processing
-        cv: document.getElementById("cv").files[0] // Store file for later processing
+        // cv: document.getElementById("cv").files[0] // Store file for later processing
+        cv: document.getElementById("cv").value
     };
 
     const picture = formData.picture;
-    const cv = formData.cv;
+    // const cv = formData.cv;
 
 
     // ----------------------------------------------------------------------------
     //             Save form data to localStorage, including picture and CV data
     // ----------------------------------------------------------------------------
+
+
 
 
 
