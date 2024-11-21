@@ -16,6 +16,7 @@ body {
 }
 
 
+
 .header-container {
     display: flex;
     align-items: center;
@@ -117,6 +118,7 @@ p{
     background-color: #333; /* Dark background for the footer */
     color: white; /* White text color */
     padding: 20px;
+    left: 0;
     
     position: relative; /* Allow positioning */
     bottom: 0; /* Stick to the bottom */
